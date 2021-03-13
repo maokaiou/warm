@@ -1,0 +1,1 @@
+<view class="contact"><view class="contact_theme"><view>联系我们</view></view><view class="infor"><view data-event-opts="{{[['tap',[['call_phone',['$event']]]]]}}" bindtap="__e">联系电话：19973826395 (点击拨号)</view><view>地址：湖南省衡阳市珠晖区湖南工学院</view><map class="map" latitude="{{latitude}}" longitude="{{longitude}}" scale="{{scale}}" markers="{{markers}}"></map></view></view>
