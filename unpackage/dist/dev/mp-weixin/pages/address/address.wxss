@@ -1,0 +1,16 @@
+
+page{background-color: #f1f1f1;}
+/* 提示 */
+.mind{color: #ccc;font-size: 24rpx;margin:3%;}
+text{margin:1%;}
+/* 所在地区 */
+.update-message{background-color: #fff;height:95rpx;line-height: 95rpx;font-size: 32rpx;display: -webkit-box;display: -webkit-flex;display: flex;border-bottom:2rpx solid #e4e4e4;}
+/* 文字 */
+.update-text{-webkit-box-flex: 3;-webkit-flex: 3;flex: 3;text-align: center;}
+/* 右侧input框 */
+.update-input{-webkit-box-flex: 7;-webkit-flex: 7;flex: 7;display: -webkit-box;display: -webkit-flex;display: flex;padding: 3.5%;}
+/* 箭头 */
+.jt{height:30rpx;width:30rpx;margin: auto;margin-right: 20rpx;}
+/* 详情 */
+.detail{background-color: #fff;width: 100%;height: 200rpx;padding: 2%;}
+

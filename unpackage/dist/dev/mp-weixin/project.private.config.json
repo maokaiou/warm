@@ -1,0 +1,95 @@
+{
+  "setting": {},
+  "condition": {
+    "plugin": {
+      "list": []
+    },
+    "game": {
+      "list": []
+    },
+    "gamePlugin": {
+      "list": []
+    },
+    "miniprogram": {
+      "list": [
+        {
+          "name": "pages/myself/myself",
+          "pathName": "pages/myself/myself",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/love/love",
+          "pathName": "pages/love/love",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/myself/myself",
+          "pathName": "pages/myself/myself",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/registLogin/registLogin",
+          "pathName": "pages/registLogin/registLogin",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/registLogin/registLogin",
+          "pathName": "pages/registLogin/registLogin",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/detail/detail",
+          "pathName": "pages/detail/detail",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/detail/detail",
+          "pathName": "pages/detail/detail",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/myself/myself",
+          "pathName": "pages/myself/myself",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/love/love",
+          "pathName": "pages/love/love",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/address/address",
+          "pathName": "pages/address/address",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/adr/address_show/address_show",
+          "pathName": "pages/adr/address_show/address_show",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/donate/donate",
+          "pathName": "pages/donate/donate",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/adr/address_show/address_show",
+          "pathName": "pages/adr/address_show/address_show",
+          "scene": null
+        }
+      ]
+    }
+  }
+}

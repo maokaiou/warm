@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "取货地址",
+  "navigationBarBackgroundColor": "#ff3333",
+  "usingComponents": {
+    "simple-address": "/components/simple-address/simple-address"
+  }
+}

@@ -1,0 +1,2 @@
+<view class="stationery"><view class="stationery_infor"><view>1.填写捐赠信息</view><text>2.信息填写成功后我们将与你取得联系
+			3.由您指定上门取件时间</text></view><view class="stationery_type"><image src="./../../static/wenju.jpg"></image></view><view class="stationery_btn"><button type="default" data-event-opts="{{[['tap',[['jumpTodonate',['$event']]]]]}}" bindtap="__e">立即捐赠</button></view></view>

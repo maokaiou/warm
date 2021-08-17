@@ -1,0 +1,53 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/love/love",
+    "pages/myself/myself",
+    "pages/contact/contact",
+    "pages/clothes/clothes",
+    "pages/toy/toy",
+    "pages/stationery/stationery",
+    "pages/book/book",
+    "pages/address/address",
+    "pages/donate/donate",
+    "pages/registLogin/registLogin",
+    "pages/detail/detail",
+    "pages/myset/myset",
+    "pages/adr/address_show/address_show"
+  ],
+  "subPackages": [],
+  "window": {
+    "navigationBarTextStyle": "white",
+    "navigationBarTitleText": "温暖",
+    "navigationBarBackgroundColor": "#ff3333",
+    "backgroundColor": "#F8F8F8"
+  },
+  "tabBar": {
+    "color": "",
+    "selectedColor": "#ff3333",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "static/tabs/icon-shouye.png",
+        "selectedIconPath": "static/tabs/icon-shouye1.png"
+      },
+      {
+        "pagePath": "pages/love/love",
+        "text": "智能扶贫",
+        "iconPath": "static/tabs/icon-donate.png",
+        "selectedIconPath": "static/tabs/icon-donate1.png"
+      },
+      {
+        "pagePath": "pages/myself/myself",
+        "text": "用户管理",
+        "iconPath": "static/tabs/icon-myself.png",
+        "selectedIconPath": "static/tabs/icon-myself1.png"
+      }
+    ],
+    "fontSize": "30px",
+    "height": "100px"
+  },
+  "usingComponents": {},
+  "sitemapLocation": "sitemap71.json"
+}
