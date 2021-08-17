@@ -56,7 +56,7 @@
 				}
 		},
 		{
-			"path": "pages/address/address",
+			"path" : "pages/address/address",
 				"style": {
 					"navigationBarTitleText": "取货地址",
 					"navigationBarBackgroundColor":"#ff3333"
@@ -91,7 +91,16 @@
 				}
 		}
 		
-	],
+	    ,{
+            "path" : "pages/adr/address_show/address_show",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "选择地址",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+    ],
 	"globalStyle": {
 		"navigationBarTextStyle": "white",
 		"navigationBarTitleText": "温暖",
@@ -110,13 +119,13 @@
 			},
 			{
 				"pagePath":"pages/love/love",
-				"text":"爱心捐赠",
+				"text":"智能扶贫",
 				"iconPath": "static/tabs/icon-donate.png",
 				"selectedIconPath":"static/tabs/icon-donate1.png"
 			},
 			{
 				"pagePath":"pages/myself/myself",
-				"text":"我的",
+				"text":"用户管理",
 				"iconPath": "static/tabs/icon-myself.png",
 				"selectedIconPath":"static/tabs/icon-myself1.png"
 			}

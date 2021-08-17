@@ -185,12 +185,30 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 var _default =
 {
   data: function data() {
     return {
-      userIsLogin: false,
-      userInfo: {} };
+      userIsLogin: false, // 用户是否登录
+      userInfo: {}, //用户信息
+      function_icons: [
+      {
+        icon: "",
+        name: "募捐" },
+
+      {
+        icon: "",
+        name: "" }] };
+
+
 
   },
   onShow: function onShow() {

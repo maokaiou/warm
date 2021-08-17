@@ -1,239 +1,88 @@
-<<template>
-	<view class="choiceAddress">
-		<view class="headerInfo">
-			<view class="top">
-				<text>请选择所在地区</text>
-				<text class="cuIcon-roundclosefill" @tap="closeChoice"></text>
+<template>
+	<view class="content">
+		<view class="update-message">
+			<view class="update-text">所在地区：</view>
+			<view class="update-input">
+				<input @tap="openAddres" v-model="address"/>
 			</view>
-			<!-- 已选择的信息 -->
-			<view class="titleArea">
-				<view class="has-choose-box flex-row pad-left">
-					<view class="title" v-for="(item, index) in selectInfo" :key="index" :class="item.IsActive ? 'active' : ''" @tap="changeNavbar(index)">
-						<text>{{ item.Name }}</text>
-					</view>
-				</view>
-			</view>
+			<!-- <image src="../../static/" class="jt"></image> -->
 		</view>
-		<!-- 城市信息 -->
-		<view class="cityInfo">
-			<scroll-view scroll-y="true" id="city-item-box">
-				<view class="cu-list menu" v-for="(pitem, index) in paintInfoList" v-show="pitem.IsActive" :key="pitem.Id">
-					<view class="cu-item" v-for="item in pitem.Child" :key="item.ID" :class="item.ID === pitem.SelectId ? 'active' : ''">
-						<view class="content" @tap="handleChoice(item, index)">
-							<text class="cuIcon-roundcheck text-grey" v-if="item.ID === pitem.SelectId"></text>
-							<text class="text-grey">{{ item.Name }}</text>
-						</view>
-					</view>
-				</view>
-			</scroll-view>
-		</view>
+		<textarea class="detail" placeholder-style="color:#ccc;" placeholder="详细地址:如教学楼,宿舍" v-model="details_content"/>
+		<simple-address ref="simpleAddress" :pickerValueDefault="cityPickerValueDefault" @onConfirm="onConfirm" themeColor='#333'></simple-address>
+		<button @click="submitAddress">确认</button>
 	</view>
 </template>
- 
+
 <script>
-export default {
-	data() {
-		return {
-			region: {},
-			paintInfoList: [], //需要绘画的城市信息
-			selectInfo: [
-				{
-					IsActive: true,
-					ID: '-1',
-					ParentId: '-1',
-					Name: '请选择'
-				}
-			] //所选择的地址信息
-		};
-	},
-	props: {
-		regionInfo: {
-			type: Array,
-			required: true
-		},
-		callback: {
-			type: Function,
-			required: true
-		}
-	},
-	methods: {
-		closeChoice(){
-			this.callback(true,this.selectInfo);
-		},
-		
-		changeNavbar(index) {
-			for (let item of this.selectInfo) {
-				item.IsActive = false;
-			}
-			this.selectInfo[index].IsActive = true;
-			for (let item of this.paintInfoList) {
-				item.IsActive = false;
-			}
-			this.paintInfoList[index].IsActive = true;
-		},
- 
-		handleChoice(item, index) {
-			let tempIndex = index + 1;
-			let selectItem = this.selectInfo[index];
-			if (item.ID != selectItem.ID) {
-				this.selectInfo.splice(tempIndex, this.selectInfo.length - 1);
-				this.paintInfoList.splice(tempIndex, this.paintInfoList.length - 1);
-				selectItem.ID = item.ID;
-				selectItem.ParentId = item.ParentId;
-				selectItem.Name = item.Name;
-				selectItem.IsActive = false;
-				this.paintInfoList[index].SelectId = item.ID;
-				this.paintInfoList[index].IsActive = false;
-				let tempArray = this.getRegionInfo(item.ID);
-				if (tempArray !== null && tempArray !== undefined && tempArray.length > 0) {
-					this.selectInfo.push({
-						IsActive: true,
-						ID: '-1',
-						ParentId: '-1',
-						Name: '请选择'
-					});
-					this.paintInfoList.push({
-						Id: 'Y' + new Date().getTime(),
-						SelectId: '',
-						IsActive: true,
-						Child: tempArray
-					});
-				} else {
-					selectItem.IsActive = true;
-					this.paintInfoList[index].IsActive = true;
-					this.callback(true,this.selectInfo);
-				}
+	import simpleAddress from "@/components/simple-address/simple-address.nvue"
+	export default {
+		data() {
+			return {
+				cityPickerValueDefault: [0, 0, 1],//弹框的初始值
+				pickerText:'',
+				address:'北京市-市辖区-西城区',//初始值,
+				details_content:''
 			}
 		},
- 
-		getRegionInfo(key) {
-			let tempObj = this.region[key];
-			let tempArray = []; //接收处理的数组
-			if (tempObj === undefined) return tempArray;
-			if (key === '86') {
-				Object.keys(tempObj).forEach(keyName => {
-					if (keyName === '910000') {
-						tempArray.push({
-							ID: '810000',
-							ParentId: '-1',
-							Name: '香港特别行政区'
-						});
-						tempArray.push({
-							ID: '820000',
-							ParentId: '-1',
-							Name: '澳门特别行政区'
-						});
-					} else {
-						tempArray.push({
-							ID: keyName,
-							ParentId: '-1',
-							Name: tempObj[keyName]
-						});
+		components: {
+			simpleAddress
+		},
+		methods: {
+			openAddres() {
+				this.$refs.simpleAddress.open();
+			},
+			onConfirm(e) {
+				this.pickerText = JSON.stringify(e);//这个步骤只是为了让大家看到返回的数据
+				this.address=e.label;//把选择的地址回显到input框中
+				// console.log(e.label)
+				// console.log(JSON.stringify(e))
+			},
+			bindTextAreaBlur: function (e) {
+			    console.log(e.detail.value)
+			},
+			// 提交地址
+			submitAddress(){
+				var me =this
+				var userInfor = uni.getStorageSync('globalUser')
+				var address_total = me.address + ' ' + me.details_content
+				
+				uni.request({
+					url:"http://81.71.6.187:9890/address",
+					method:"POST",
+					data:{
+						uid:userInfor.id,
+						content:address_total 
+					},
+					success(res) {
+						if(res.data.code === 20000){
+							uni.showToast({
+								title:"添加成功",
+								icon:""
+							})
+							
+						}
 					}
-				});
-			} else {
-				Object.keys(tempObj).forEach(keyName => {
-					tempArray.push({
-						ID: keyName,
-						ParentId: key,
-						Name: tempObj[keyName]
-					});
-				});
+				})
 			}
-			return tempArray;
-		},
- 
-		init() {
-			if (this.regionInfo.length > 0) {
-				for (let item of this.regionInfo) {
-					this.getRegionInfo(item);
-				}
-			}
+
 		}
-	},
-	created() {
-		uni.request({
-			url: 'static/json/newRegion.json',
-			success: res => {
-				this.region = res.data;
-				let tempArray = this.getRegionInfo('86');
-				this.paintInfoList.push({
-					Id: 'Y' + new Date().getTime(),
-					IsActive: true,
-					Child: tempArray
-				});
-				this.init();
-			}
-		});
 	}
-};
 </script>
- 
-<style lang="scss">
-.flex-row {
-	display: flex;
-	flex-direction: row;
-}
-.pad-left {
-	padding-left: 30upx;
-}
-view {
-	font-size: 26upx;
-}
-.choiceAddress {
-	background-color: #ffffff;
-	position: relative;
-	.headerInfo {
-		.top {
-			height: 80upx;
-			line-height: 80upx;
-			text-align: center;
-			font-size: 32upx;
-			color: #8799a3;
-			position: relative;
-			.cuIcon-roundclosefill {
-				position: absolute;
-				top: 50%;
-				transform: translateY(-50%);
-				right: 20upx;
-			}
-		}
-	}
-}
- 
-.has-choose-box {
-	height: 60upx;
-	line-height: 60upx;
-	box-shadow: 0 5upx 5upx #ccc;
-	.title {
-		margin-right: 50upx;
-		border-bottom: 2upx solid #f5f5f5;
-	}
-	.title.active {
-		color: #007aff;
-		border-color: #007aff;
-	}
-}
- 
-#city-item-box {
-	margin-top: 4upx;
-	height: 500upx;
-	.cu-list + .cu-list {
-		margin-top: 0;
-	}
-	.cu-list.menu > .cu-item {
-		min-height: 68upx;
-	}
-	.cu-list.menu > .cu-item.active {
-		padding-left: 0;
-		.cuIcon-roundcheck {
-			margin-right: 0;
-		}
-		.text-grey,
-		.line-grey,
-		.lines-grey {
-			color: #007aff !important;
-		}
-	}
-}
+
+<style>
+	page{background-color: #f1f1f1;}
+	/* 提示 */
+	.mind{color: #ccc;font-size: 24upx;margin:3%;}
+	text{margin:1%;}
+	/* 所在地区 */
+	.update-message{background-color: #fff;height:95upx;line-height: 95upx;font-size: 32upx;display: flex;border-bottom:2upx solid #e4e4e4;}
+	/* 文字 */
+	.update-text{flex: 3;text-align: center;}
+	/* 右侧input框 */
+	.update-input{flex: 7;display: flex;padding: 3.5%;}
+	/* 箭头 */
+	.jt{height:30upx;width:30upx;margin: auto;margin-right: 20upx;}
+	/* 详情 */
+	.detail{background-color: #fff;width: 100%;height: 200upx;padding: 2%;}
 </style>
+			

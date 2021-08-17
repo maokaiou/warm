@@ -148,6 +148,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 var _default =
 {
   data: function data() {
@@ -173,6 +177,7 @@ var _default =
           if (res.data.code == 20000) {
             var list = res.data.result;
             _this.list = list;
+            console.log(_this.list);
           }
 
         } });

@@ -1,5 +1,7 @@
 {
   "navigationBarTitleText": "捐赠信息",
   "navigationBarBackgroundColor": "#ff3333",
-  "usingComponents": {}
+  "usingComponents": {
+    "uni-steps": "/components/uni-steps/uni-steps"
+  }
 }

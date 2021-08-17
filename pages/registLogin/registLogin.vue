@@ -42,7 +42,7 @@
 			return {
 				username:'',
 				password:'',
-				userInfo:{}
+				userInfor:{}
 			}
 		},
 		methods:{
@@ -102,7 +102,7 @@
 						"password":this.password
 					},
 					success:(res)=>{
-						// console.log(res.data)
+						console.log(res.data)
 						// debugger
 						if(res.data.code ==20000){
 							console.log(res.data)
@@ -132,25 +132,26 @@
 				})
 			},
 			wxLogin(){
-				let me = this
-				console.log(me)
-				uni.getUserInfo({
-					provider:"weixin",
-					success:function(loginRes) {
-						let userInfo= loginRes.userInfo
-							me.userInfo=userInfo
-						
-						 console.log(me.userInfo)
-					}
-				})
+				var me =this
+				// uni.getUserInfo({
+				// 	provider:"weixin",
+				// 	success:(loginRes)=> {
+				// 		// console.log(loginRes)
+				// 		 // this.userInfor = loginRes.userInfo
+				// 			// console.log(this.userInfor)
+				// 			// console.log( loginRes.userInfo)
+				// 			 me.userInfor = loginRes.userInfo
+							 
+				// 	}
+				// })
 				// let userInfor = e.detail.userInfo
 				uni.login({
 					provider: 'weixin',
+
 					  success: (loginRes)=> {
 						 // 获取微信登录的code(授权码)
 					    let code = loginRes.code
-				// 		console.log(this.userInfo)
-				
+						// console.log(me.userInfor)
 						uni.request({
 							url:"http://81.71.6.187:9890/users/wx-login",
 							mehtod:"POST",
@@ -158,9 +159,11 @@
 								code:code
 							},
 							success:(userResult)=>{
+								// console.log(userResult)
 								console.log(userResult)
 								if(userResult.data.code == 20000){
-									uni.setStorageSync("global")
+									
+									uni.setStorageSync("globalUser",userInfor)
 									uni.switchTab({
 										url:"../myself/myself"
 									})

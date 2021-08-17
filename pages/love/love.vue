@@ -7,9 +7,13 @@
 			<input tpe="text"  class="search-text" focus placeholder="搜索(最长10个关键字)捐赠地区名字" maxlength="10" 
 			confirm-type="search" @input="getData"/>
 		</view>
-		<view class="img-wrapper" >
-			<view class="img-item" v-for="item in list" :key="item.id">
-				<image class="img-show" :src="item.img" @click="toDetail(item.id)"></image>
+		<view class="show-wrapper" >
+			<view class="show-item" v-for="item in list" :key="item.id">
+					<view class="show-img">
+						<image :src="item.img" @click="toDetail(item.id)" mode="scaleToFill"></image>
+					</view>
+					<view class="show-address">
+					三下乡:{{item.address}}</view>
 			</view>
 		</view>
 	</view>
@@ -41,6 +45,7 @@
 						if(res.data.code ==20000){
 							var list = res.data.result
 							this.list =list
+							console.log(this.list)
 						}
 						
 					}
@@ -84,18 +89,34 @@
 			}
 		}
 		//图片展示
-		.img-wrapper{
+		.show-wrapper{
 			display:flex;
 			flex-direction: row;
-			justify-content: flex-start;
+			justify-content: space-between;
+			align-items: center;
 			flex-wrap: wrap;
 			margin-top:80rpx;
-			padding:6rpx 15rpx 0rpx 15rpx;
-			.img-item{
-				padding:10rpx 15rpx;
-				.img-show{
-					width:325rpx;
-					height:325rpx;
+			padding:7px 10px;
+			// padding:6rpx 15rpx 0rpx 15rpx;
+			height:140px;
+			.show-item{	
+				width:45%;
+				border:6px solid #F0F0F0;
+				.show-img{
+					display:flex;
+					justify-content: center;
+					margin-bottom: 10px;
+					image{
+						// width:100px;
+						height:100px;
+					}
+				}
+				.show-address{
+					width:100px;
+					color:#555555;
+					font-size: 10px;
+					font-weight: bold;
+					word-wrap:break-word
 				}
 			}
 		}

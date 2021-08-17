@@ -72,8 +72,12 @@
 		},
 		onShow() {
 			var userInfor = uni.getStorageSync("globalUser")
-			console.log(userInfor)
 			this.userInfor = userInfor
+			
+			
+		},
+		methods:{
+			
 		}
 	}
 	

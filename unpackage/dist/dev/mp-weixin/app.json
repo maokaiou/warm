@@ -12,7 +12,8 @@
     "pages/donate/donate",
     "pages/registLogin/registLogin",
     "pages/detail/detail",
-    "pages/myset/myset"
+    "pages/myset/myset",
+    "pages/adr/address_show/address_show"
   ],
   "subPackages": [],
   "window": {
@@ -33,13 +34,13 @@
       },
       {
         "pagePath": "pages/love/love",
-        "text": "爱心捐赠",
+        "text": "智能扶贫",
         "iconPath": "static/tabs/icon-donate.png",
         "selectedIconPath": "static/tabs/icon-donate1.png"
       },
       {
         "pagePath": "pages/myself/myself",
-        "text": "我的",
+        "text": "用户管理",
         "iconPath": "static/tabs/icon-myself.png",
         "selectedIconPath": "static/tabs/icon-myself1.png"
       }
@@ -47,5 +48,6 @@
     "fontSize": "30px",
     "height": "100px"
   },
-  "usingComponents": {}
+  "usingComponents": {},
+  "sitemapLocation": "sitemap71.json"
 }

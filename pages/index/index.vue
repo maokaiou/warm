@@ -29,7 +29,7 @@
 		
 		<!-- 合作企业 -->
 		<view class="jigoulogo">
-			<view class="tit">合作教育机构</view>
+			<view class="tit">合作机构</view>
 			<view  class="scroll_left">
 				<view class="logo-item" v-for="item in qylogo">
 					<image :src="item.bkgrd" mode="widthFix"></image>
